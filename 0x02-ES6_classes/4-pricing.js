@@ -34,8 +34,8 @@ export default class Pricing {
     this._currency = valueCurrency;
   }
 
-  displayFulPrice() {
-    return `${this._amount} ${this._currency.name} (${this._currency.code})`;
+  displayFullPrice() {
+    return `${this._amount} ${this._currency.displayFullCurrency()}`;
   }
 
   static convertPrice(amount, conversionRate) {
