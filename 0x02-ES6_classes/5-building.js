@@ -10,4 +10,15 @@ export default class Building {
     }
     this._sqft = sqft;
   }
+
+  get sqft() {
+    return this._sqft;
+  }
+
+  set sqft(valueSqft) {
+    if (typeof valueSqft !== 'number') {
+      throw new TypeError('sqft must to be a number');
+    }
+    this._sqft = valueSqft;
+  }
 }
