@@ -1,5 +1,12 @@
 export default class HolbertonClass {
   constructor(year, location) {
+    if (typeof year !== 'number') {
+      throw new TypeError('year must be a number');
+    }
+    if (typeof location !== 'string') {
+      throw new TypeError('location must be a string');
+    }
+
     this._year = year;
     this._location = location;
   }
@@ -13,8 +20,15 @@ export default class HolbertonClass {
   }
 }
 
-export default class StudentHolberton {
+export class StudentHolberton {
   constructor(firstName, lastName, holbertonClass) {
+    if (typeof firstName !== 'string') {
+      throw new TypeError('firstName must be a string');
+    }
+    if (typeof lastName !== 'string') {
+      throw new TypeError('lastName must be a string');
+    }
+
     this._firstName = firstName;
     this._lastName = lastName;
     this._holbertonClass = holbertonClass;
