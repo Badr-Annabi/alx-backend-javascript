@@ -1,4 +1,4 @@
-export class HolbertonClass {
+export default class HolbertonClass {
   constructor(year, location) {
     this._year = year;
     this._location = location;
@@ -13,7 +13,7 @@ export class HolbertonClass {
   }
 }
 
-export class StudentHolberton {
+export default class StudentHolberton {
   constructor(firstName, lastName, holbertonClass) {
     this._firstName = firstName;
     this._lastName = lastName;
