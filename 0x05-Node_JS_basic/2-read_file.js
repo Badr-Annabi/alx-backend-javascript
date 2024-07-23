@@ -3,13 +3,13 @@ const fs = require('fs');
 function countStudents(filePath) {
   try {
     const data = fs.readFileSync(filePath, 'utf8');
-    const lines = data.split('\n').filter((line) => line.trim() !== '');
+    const lines = data.toString().split('\n');
     const header = lines[0].split(',');
 
     const students = {};
     let totalStudents = 0;
 
-    for (let i = 1; i < lines.length; i++) {
+    for (let i = 1; i < lines.length; i += 1) {
       const line = lines[i].split(',');
       if (line.length === header.length) {
         const field = line[header.indexOf('field')];
@@ -29,7 +29,11 @@ function countStudents(filePath) {
       }
     }
   } catch (error) {
-    throw new Error('Cannot load the database');
+    if (error.code === 'ENOENT') {
+      throw new Error('Cannot load the database');
+    } else {
+      throw error;
+    }
   }
 }
 
