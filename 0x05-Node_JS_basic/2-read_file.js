@@ -2,8 +2,8 @@ const fs = require('fs');
 
 function countStudents(filePath) {
   try {
-    const data = fs.readFileSync(filePath, 'utf8');
-    const lines = data.toString().split('\n');
+    const data = fs.readFileSync(filePath, 'utf8').trim();
+    const lines = data.split('\n').filter((line) => line.trim() !== '');
     const header = lines[0].split(',');
 
     const students = {};
