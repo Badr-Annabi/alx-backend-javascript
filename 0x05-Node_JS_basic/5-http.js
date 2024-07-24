@@ -57,9 +57,9 @@ const app = http.createServer((req, res) => {
     countStudents(process.argv[2].toString()).then((output) => {
       const outString = output.slice(0, -1);
       res.end(outString);
-    }).catch((error) => {
-      res.writeHead(404, { 'Content-Type': 'text/plain' });
-      res.end(`This is the list of our students\n${error.message}`);
+    }).catch(() => {
+      res.statusCode = 404;
+      res.end('Cannot load the database');
     });
   }
 });
