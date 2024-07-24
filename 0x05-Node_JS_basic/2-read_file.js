@@ -1,39 +1,37 @@
 const fs = require('fs');
 
-function countStudents(filePath) {
+function countStudents(fileName) {
+  const students = {};
+  const fields = {};
+  let length = 0;
   try {
-    const data = fs.readFileSync(filePath, 'utf8').trim();
-    const lines = data.split('\n').filter((line) => line.trim() !== '');
-    const header = lines[0].split(',');
-
-    const students = {};
-    let totalStudents = 0;
-
-    for (let i = 1; i < lines.length; i += 1) {
-      const line = lines[i].split(',');
-      if (line.length === header.length) {
-        const field = line[header.indexOf('field')];
-        const firstname = line[header.indexOf('firstname')];
-        if (!students[field]) {
-          students[field] = [];
+    const content = fs.readFileSync(fileName, 'utf-8');
+    const lines = content.toString().split('\n');
+    for (let i = 0; i < lines.length; i += 1) {
+      if (lines[i]) {
+        length += 1;
+        const field = lines[i].toString().split(',');
+        if (Object.prototype.hasOwnProperty.call(students, field[3])) {
+          students[field[3]].push(field[0]);
+        } else {
+          students[field[3]] = [field[0]];
         }
-        students[field].push(firstname);
-        totalStudents++;
+        if (Object.prototype.hasOwnProperty.call(fields, field[3])) {
+          fields[field[3]] += 1;
+        } else {
+          fields[field[3]] = 1;
+        }
       }
     }
-    console.log(`Number of students: ${totalStudents}`);
-
-    for (const field in students) {
-      if (students.hasOwnProperty(field)) {
-        console.log(`Number of students in ${field}: ${students[field].length}. List: ${students[field].join(', ')}`);
+    const l = length - 1;
+    console.log(`Number of students: ${l}`);
+    for (const [key, value] of Object.entries(fields)) {
+      if (key !== 'field') {
+        console.log(`Number of students in ${key}: ${value}. List: ${students[key].join(', ')}`);
       }
     }
   } catch (error) {
-    if (error.code === 'ENOENT') {
-      throw new Error('Cannot load the database');
-    } else {
-      throw error;
-    }
+    throw Error('Cannot load the database');
   }
 }
 
