@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const calculateNumber = require('./1-calcul');
+const calculateNumber = require('./2-calcul_chai');
 
 describe('calculateNumber', () => {
     describe('type == "SUM"', () => {
@@ -7,7 +7,7 @@ describe('calculateNumber', () => {
             expect(calculateNumber('SUM', 2.0, 2.0)).to.equal(4);
         });
 
-        it('equal positive numbers (with round)', () => {
+        it('equal positive numbers (alternate)', () => {
             expect(calculateNumber('SUM', 2.3, 1.8)).to.equal(4);
         });
 
@@ -15,7 +15,7 @@ describe('calculateNumber', () => {
             expect(calculateNumber('SUM', -2.0, -2.0)).to.equal(-4);
         });
 
-        it('equal negative numbers (with round)', () => {
+        it('equal negative numbers (alternate)', () => {
             expect(calculateNumber('SUM', -2.3, -1.8)).to.equal(-4);
         });
 
@@ -37,7 +37,7 @@ describe('calculateNumber', () => {
             expect(calculateNumber('SUBTRACT', 2.0, 2.0)).to.equal(0);
         });
 
-        it('equal positive numbers (with round)', () => {
+        it('equal positive numbers (alternate)', () => {
             expect(calculateNumber('SUBTRACT', 2.3, 1.8)).to.equal(0);
         });
 
@@ -45,16 +45,16 @@ describe('calculateNumber', () => {
             expect(calculateNumber('SUBTRACT', -2.0, -2.0)).to.equal(0);
         });
 
-        it('equal negative numbers (with round)', () => {
+        it('equal negative numbers (alternate)', () => {
             expect(calculateNumber('SUBTRACT', -2.3, -1.8)).to.equal(0);
         });
 
         it('negative and positive numbers', () => {
-            expect(calculateNumber('SUBTRACT', -2.0, 2.0),).to.equal(4.0);
+            expect(calculateNumber('SUBTRACT', -2.0, 2.0)).to.equal(-4.0);
         });
 
         it('positive and negative numbers', () => {
-            expect(calculateNumber('SUBTRACT', 2.0, -2.0)).to.equal(-4.0);
+            expect(calculateNumber('SUBTRACT', 2.0, -2.0)).to.equal(4.0);
         });
 
         it('0 and 0', () => {
@@ -68,15 +68,15 @@ describe('calculateNumber', () => {
         });
 
         it('numbers with different signs', () => {
-            expect(calculateNumber('DIVIDE', -7.0, 2.0)).to.equal(3.5);
+            expect(calculateNumber('DIVIDE', -7.0, 2.0)).to.equal(-3.5);
         });
 
-        it('numbers with different signs (with round)', () => {
-            expect(calculateNumber('DIVIDE', 7.0, -2.0)).to.equal(3.5);
+        it('numbers with different signs (alternate)', () => {
+            expect(calculateNumber('DIVIDE', 7.0, -2.0)).to.equal(-3.5);
         });
 
         it('negative numbers', () => {
-            expect(calculateNumber('DIVIDE', -7.0, -2.0)).to.equal(-3.5);
+            expect(calculateNumber('DIVIDE', -7.0, -2.0)).to.equal(3.5);
         });
 
         it('equal positive numbers', () => {
